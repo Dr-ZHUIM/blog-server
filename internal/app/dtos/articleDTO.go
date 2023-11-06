@@ -1,4 +1,4 @@
-package structs
+package DTOs
 
 type Article struct {
 	ID      string `json:"id"`

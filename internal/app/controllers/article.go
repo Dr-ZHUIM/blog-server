@@ -1,19 +1,16 @@
-package articleController
+package Controller
 
 import (
-	articleService "article-server/internal/app/services"
-	"fmt"
+	Service "article-server/internal/app/services"
 
 	"github.com/gin-gonic/gin"
 )
 
-func ArticleServices() {
-	fmt.Println("---------------------------------------------------")
+func GetServices() {
 	router := gin.Default()
-	router.POST("/getArticleList", articleService.GetArticleList)
-	router.POST("/addArticle", articleService.AddArticle)
-	router.POST("/getArticle/:id", articleService.GetArticle)
+	router.POST("/getArticleList", Service.GetArticleList)
+	router.POST("/addArticle", Service.AddArticle)
+	router.POST("/getArticle/:id", Service.GetArticle)
+	router.POST("/login", Service.Login)
 	router.Run("localhost:8080")
-	fmt.Println("server article opened")
-	fmt.Println("---------------------------------------------------")
 }
