@@ -2,6 +2,7 @@ package Service
 
 import (
 	DTOs "article-server/internal/app/dtos"
+	jwtFunc "article-server/pkg/Jwt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -26,7 +27,12 @@ func Login(c *gin.Context) {
 	for _, user := range users {
 		if user.Username == json.Username {
 			if user.Password == json.Password {
-				c.IndentedJSON(http.StatusOK, gin.H{"message": "login success", "status": "success"})
+				Token, err := jwtFunc.GenerateJWTToken()
+				if err != nil {
+					c.IndentedJSON(http.StatusServiceUnavailable, gin.H{"message": "generate token error", "status": "generate_token_error"})
+					return
+				}
+				c.IndentedJSON(http.StatusOK, gin.H{"message": "login success", "status": "success", "token": Token})
 				return
 			}
 			c.IndentedJSON(http.StatusUnauthorized, gin.H{"message": "found wrong password", "status": "wrong_password"})
