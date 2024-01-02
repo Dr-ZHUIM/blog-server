@@ -35,3 +35,15 @@ func GetArticle(c *gin.Context) {
 	}
 	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "article not found"})
 }
+
+// GetArticleQuery retrieves an article by its ID from the list of articles and sends it as a JSON response.
+func GetArticleQuery(c *gin.Context) {
+	id := c.Query("id")
+	for _, a := range articles {
+		if a.ID == id {
+			c.IndentedJSON(http.StatusOK, a)
+			return
+		}
+	}
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "article not found"})
+}

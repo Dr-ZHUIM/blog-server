@@ -12,6 +12,7 @@ func GetServices() {
 	router.POST("/getArticleList", Service.GetArticleList)
 	router.POST("/addArticle", Service.AddArticle)
 	router.POST("/getArticle/:id", Service.GetArticle)
+	router.POST("/uploadFile", Service.UploadFile)
 	router.POST("/login", Service.Login)
 	router.Run("localhost:8080")
 }
