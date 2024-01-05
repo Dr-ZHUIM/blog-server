@@ -2,12 +2,14 @@ package articleServer
 
 import (
 	Controller "article-server/internal/app/controllers"
-	"fmt"
+	Log "article-server/internal/app/log"
+	"io"
+
+	"github.com/gin-gonic/gin"
 )
 
 func Launch() {
-	fmt.Println("---------------------------------------------------")
-	fmt.Println("server started, listenning to port 8080...")
+	gin.SetMode(gin.ReleaseMode)
+	gin.DefaultWriter = io.MultiWriter(Log.GinLogFile)
 	Controller.GetServices()
-	fmt.Println("---------------------------------------------------")
 }

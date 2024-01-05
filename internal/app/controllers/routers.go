@@ -11,6 +11,7 @@ func aritcleRouters(router *gin.Engine) {
 	article.POST("/getArticleList", Service.GetArticleList)
 	article.POST("/addArticle", Service.AddArticle)
 	article.POST("/getArticle/:id", Service.GetArticle)
+	article.POST("/deleteArticle/:id", Service.DeleteArticle)
 }
 
 func staticRouters(router *gin.Engine) {
