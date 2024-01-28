@@ -43,5 +43,5 @@ func Connect() {
 	DB = db
 
 	// Auto-migrate the User model
-	db.AutoMigrate(&DTOs.Article{}, &DTOs.User{})
+	db.AutoMigrate(&DTOs.Article{}, &DTOs.User{}, &DTOs.Component{})
 }
